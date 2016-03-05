@@ -22,5 +22,34 @@ struct student {
 };
 
 struct student ** topKStudents(struct student *students, int len, int K) {
-	return NULL;
+	
+	if (students == NULL || K <= 0) return NULL;
+
+	int i, y;
+	struct student temp;
+	for (i = 0; i<len; i++){
+		for (y = 0; y<len; y++){
+			if (students[y].score<students[y + 1].score){
+				temp = students[y];
+				students[y] = students[y + 1];
+				students[y + 1] = temp;
+			}
+			else continue;
+		}
+
+	}
+	if (len>K){
+		for (i = 0; i < K; i++){
+			students[i] = students[i];
+
+		}
+		return &students;
+	
+	}
+	else if (K > len){
+		return &students;
+	}
+	else
+		return &students;
+
 }

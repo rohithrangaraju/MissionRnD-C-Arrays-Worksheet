@@ -20,21 +20,26 @@ int removeArrayDuplicates(int *Arr, int len)
 	if (Arr == NULL) return -1;
 	else if (len < 0) return -1;
 	else{
-		int i, j, k;
-		for (i = 0; i < len; i++){
-			for (j = i + 1; j < len;){
-
-				if (Arr[j] == Arr[i]){
-					for (k = j; k < len; k++){
-						Arr[k] = Arr[k + 1];
-					}
-					len--;
-				}
-				else
-					j++;
-
+		int i, j,temp;
+		for (i = 0; i<len; i++){
+			temp = Arr[i];
+			j = i;
+			while (temp<Arr[j - 1] && j>0){
+				Arr[j] = Arr[j - 1];
+				j--;
+			}
+			Arr[j] = temp;
+		}
+		j = 0;
+		//int x = len;
+		for (i = 1; i<len; i++){
+			if (Arr[i] == Arr[i - 1])
+				continue;
+			else {
+				//j++;
+				Arr[++j] = Arr[i];
 			}
 		}
-		return len;
+		return j+1;
 	}
 }
